@@ -7,7 +7,10 @@ xcoord = sys.argv[1]
 ycoord = sys.argv[2]
 
 connection = http.client.HTTPConnection("localhost:"+PORT_NUMBER)
-connection.request("POST","/","x=" + xcoord + "&y=" + ycoord)
+connection.request("GET","/","x=" +xcoord + "&y="+ ycoord)
 response = connection.getresponse()
-print("The response is " + (str)(response.status))
+result = response.read()
+
+print("status is " +(str(response.status)))
+print("the result is " + str(result))
 print("finished")

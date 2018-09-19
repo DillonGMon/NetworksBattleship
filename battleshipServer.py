@@ -21,7 +21,8 @@ class myHandler(BaseHTTPRequestHandler):
                 xmatch= False
                 ycoord=11
                 ymatch= False
-                hit = 1     
+                hit = 1
+                sunk = 'D'
                 
                 content_len = int(self.headers.get('content-length',0))
                 post_body = self.rfile.read(content_len)
@@ -39,7 +40,7 @@ class myHandler(BaseHTTPRequestHandler):
 
                 print("the coordinates are "+ str(xcoord)+ " " + str(ycoord))
                 if int(xcoord)>=10 or int(ycoord)>=10 :
-                        self.send_response(404)
+                        self.send_response(200)
                         self.send_header("Content-type", "text/html")
                         self.end_headers()
                 else:
@@ -49,8 +50,10 @@ class myHandler(BaseHTTPRequestHandler):
 
 
                 if hit:
-                        self.wfile.write(b"hit=1")
-                        
+                        self.wfile.write(b"hit=0")
+
+                if sunk != '':
+                        self.wfile.write(b"&/sunk=C")
                 return
 
 try:

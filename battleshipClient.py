@@ -31,6 +31,7 @@ if response.status == 200:
     result = re.sub("'",'', str(result))
     result = re.split('&', str(result))
     hit = int(re.sub('[^0-9]','', result[0]))
+    print(hit)
     if hit == 0:
         print("Miss!")
     else:
@@ -45,6 +46,8 @@ if response.status == 200:
             print("Sank a Carrier!")
         elif sunk == 'S':
             print("Sank a Submarine!")
+        elif sunk == 'B':
+            print("Sank a Battleship!")
         else:
             print("Who knows what you sank?")
             print(sunk)
